@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Belajar Dasar Ajax</title>
+    <style>
+        body{
+            width: 70%;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+        }
+        .main{
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background: #f9f9f9;
+            box-shadow: 2px 2px 9px #69696948;
+            height: 100%;
+            text-align: center;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        <h1>Ajax Github Loader</h1>
+        <input type="text" name="username" placeholder="username github...">
+        <input type="button" onclick="loadContent()" value="Search">
+    </fieldset>
+    <div id="hasil"></div>
+    <script>
+        function loadContent(){
+            var load = new XMLHttpRequest();
+            var username = document.querySelector("input[name=username]");
+            console.log(username);
+            var url = "https://api.github.com/users/"+ username.value;
+            load.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    document.getElementById("hasil").innerHTML = this.responseText;
+                }
+            };
+            load.open("GET", url, true);
+            load.send();
+        }
+    </script>
+</div>
+</body>
+</html>
