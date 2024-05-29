@@ -6,20 +6,97 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Belajar Dasar Ajax</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .profile{
+            background-color: aliceblue;
+            margin: 10px;
+            height: 400px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px red solid;
+        }
+        .foto{
+            margin: 5px;
+            width: 240px;
+            height: 240px;
+        }
+        .data{
+            margin: 5px;
+            padding: 5px;
+            width: 75%;
+            height: 240px;
+            border: 1px red solid;
+        }
+
+        .topsearch{
+            text-align: center;
+        }
+        #img{
+            width: 100%;
+            height:100%;
+            border-radius: 4px;
+        }
+        .data span{
+            color: #3c3c3c;
+        }
+        #nama{
+            font-size: 3em;
+            border: #c41b1b96 1px solid;
+            font-family: fantasy;
+            display: block;
+            height: 30%;
+            margin-bottom: 10px;
+        }
+
+        #nama p{
+            font-size: 20px;
+            margin-top: -3px;
+            border: red 1px solid;
+        }
+        #nama a{
+            text-decoration: none;
+            color: #a185e2;
+        }
+        #repo h3{
+            color: #5c478f;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        #repo table{
+            width: 100%;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <div class="main">
 
+        <div class="topsearch">
         <h1>Ajax Github Loader</h1>
         <input type="text" name="username" placeholder="username github...">
         <input type="button" onclick="loadContent()" value="Search">
+        </div>
     
-        <div>
-            <div>
-                foto
+        <div class="profile">
+            <div class="foto">
+                <img src="https://placehold.co/400x400/ae92f0/black?text=Image" id="img">
             </div>
-            <div>
-                data info
+            <div class="data">
+                <div id="nama"><b>John Doe</b><p><a href="#">https://github.com/linus</a></p></div>
+                <div id="repo">
+                    <table border="1">
+                        <th><h3>Public Repository</h3></th>
+                        <th><h3>Created at</h3></th>
+                        <th><h3>Last Update</h3></th>
+                        <tr>
+                            <td>sdfa</td>
+                            <td>sdfa</td>
+                            <td>sdfsd</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
 
