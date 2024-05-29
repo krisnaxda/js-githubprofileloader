@@ -5,23 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Belajar Dasar Ajax</title>
-    <style>
-        body{
-            width: 70%;
-            margin: 0 auto;
-            background-color: #f9f9f9;
-        }
-        .main{
-            padding-top: 40px;
-            padding-bottom: 40px;
-            background: #f9f9f9;
-            box-shadow: 2px 2px 9px #69696948;
-            height: 100%;
-            text-align: center;
-            
-        }
-
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="main">
@@ -29,7 +13,16 @@
         <h1>Ajax Github Loader</h1>
         <input type="text" name="username" placeholder="username github...">
         <input type="button" onclick="loadContent()" value="Search">
-    </fieldset>
+    
+        <div>
+            <div>
+                foto
+            </div>
+            <div>
+                data info
+            </div>
+        </div>
+
     <div id="hasil"></div>
     <script>
         function loadContent(){
