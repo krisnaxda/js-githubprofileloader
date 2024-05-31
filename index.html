@@ -12,7 +12,7 @@
             margin: 10px;
             height: 400px;
             margin-bottom: 20px;
-            display: flex;
+            display: none;
             justify-content: space-around;
             align-items: center;
             border: 1px red solid;
@@ -67,6 +67,7 @@
         #repo table{
             width: 100%;
             text-align: left;
+            
         }
     </style>
 </head>
@@ -76,15 +77,16 @@
         <div class="topsearch">
         <h1>Ajax Github Loader</h1>
         <input type="text" name="username" placeholder="username github...">
-        <input type="button" onclick="loadContent()" value="Search">
+        <button type="button" id="button" onclick="loadContent()">Search</button>
+        <button type="button" id="clear" onclick="clearResult()">Clear</button>
         </div>
     
-        <div class="profile">
+        <div class="profile" id="prof">
             <div class="foto">
                 <img src="https://placehold.co/400x400/ae92f0/black?text=Image" id="img">
             </div>
             <div class="data">
-                <div id="nama"><b>John Doe</b><p><a href="#">https://github.com/linus</a></p></div>
+                <div id="nama"><b id="username"></b><p><a href="" id="links">ss</a></p></div>
                 <div id="repo">
                     <table border="1">
                         <th><h3>Public Repository</h3></th>
@@ -102,18 +104,75 @@
 
     <div id="hasil"></div>
     <script>
+        
         function loadContent(){
+            const hasil = document.getElementById('hasil');
+            const button = document.getElementById('button');
+            /*var prof = getElementById('prof');*/
+            
+
             var load = new XMLHttpRequest();
             var username = document.querySelector("input[name=username]");
             console.log(username);
             var url = "https://api.github.com/users/"+ username.value;
-            load.onreadystatechange = function(){
+
+            load.onloadstart = function(){
+                button.innerHTML = "Loading...";
+            }
+
+            /*load.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
-                    document.getElementById("hasil").innerHTML = this.responseText;
+                   hasil.innerHTML = this.responseText;
+                    document.getElementsByClassName("profile").style.display = "flex";
+                }
+            };*/
+            load.onerror = function () {
+                alert("Gagal mengambil data");
+            };
+
+            /*load.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 404){
+                    hasil.innerHTML = "Gagal, user tidak ditemukan";
+                    button.innerHTML = "Coba lagi..";
+                    prof.style.display = 'flex';
+                }
+            };*/
+
+            load.onloadend = function(){
+                if(this.responseText !== ""){
+                    var data = JSON.parse(this.responseText);
+                    var img = document.createElement("img");
+                    img.src = data.avatar_url;
+                    
+                    var name = data.login;
+                    var links = data.html_url;
+
+                    var linkLoc = document.getElementById("links");
+                    linkLoc.innerHTML = "";
+
+                    prof.style.display = 'flex';
+                    document.getElementById("username").append(name);
+                    button.innerHTML = "Done";
+                    linkLoc.innerHTML += "<a href='" + links + "'>"+ links + "</a>";
+                    console.log(button.innerHTML);
+                    but();
                 }
             };
+
             load.open("GET", url, true);
             load.send();
+
+            function but(){
+                const button = document.getElementById('button');
+                if(button.innerHTML == "Done"){
+                button.style.display = 'none';
+                button
+                }
+            }
+
+            function clearResult() {
+                document.getElementById("hasil").innerHTML = "";
+            }
         }
     </script>
 </div>
