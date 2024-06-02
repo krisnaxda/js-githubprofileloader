@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .profile{
-            background-color: aliceblue;
+            background-color: rgb(255, 246, 255);
             margin: 10px;
             height: 400px;
             margin-bottom: 20px;
             display: none;
             justify-content: space-around;
             align-items: center;
-            border: 1px red solid;
+            border-radius: 4px;
         }
         .foto{
             margin: 5px;
@@ -27,7 +27,6 @@
             padding: 5px;
             width: 75%;
             height: 240px;
-            border: 1px red solid;
         }
 
         .topsearch{
@@ -43,7 +42,6 @@
         }
         #nama{
             font-size: 3em;
-            border: #c41b1b96 1px solid;
             font-family: fantasy;
             display: block;
             height: 30%;
@@ -53,7 +51,6 @@
         #nama p{
             font-size: 20px;
             margin-top: -3px;
-            border: red 1px solid;
         }
         #nama a{
             text-decoration: none;
@@ -76,9 +73,11 @@
 
         <div class="topsearch">
         <h1>Ajax Github Loader</h1>
+        <form id="sendIt">
         <input type="text" name="username" placeholder="username github...">
-        <button type="button" id="button" onclick="loadContent()">Search</button>
-        <button type="button" id="clear" onclick="clearResult()">Clear</button>
+        <button type="submit" id="button">Search</button>
+        <button type="button" id="clear" onclick="window.location.reload()">Clear</button>
+        </form>
         </div>
     
         <div class="profile" id="prof">
@@ -86,16 +85,17 @@
                 <img src="https://placehold.co/400x400/ae92f0/black?text=Image" id="img">
             </div>
             <div class="data">
-                <div id="nama"><b id="username"></b><p><a href="" id="links">ss</a></p></div>
+                <div id="nama"><b id="name"></b><p><a href="" id="links">ss</a></p></div>
+                <p id="location"></p>
                 <div id="repo">
-                    <table border="1">
+                    <table style="border-collapse: collapse; margin-top: -20px;">
                         <th><h3>Public Repository</h3></th>
                         <th><h3>Created at</h3></th>
                         <th><h3>Last Update</h3></th>
                         <tr>
-                            <td>sdfa</td>
-                            <td>sdfa</td>
-                            <td>sdfsd</td>
+                            <td id="pubRepo"></td>
+                            <td id="createdAt"></td>
+                            <td id="lastUpdate"></td>
                         </tr>
                     </table>
                 </div>
@@ -103,78 +103,8 @@
         </div>
 
     <div id="hasil"></div>
-    <script>
-        
-        function loadContent(){
-            const hasil = document.getElementById('hasil');
-            const button = document.getElementById('button');
-            /*var prof = getElementById('prof');*/
-            
 
-            var load = new XMLHttpRequest();
-            var username = document.querySelector("input[name=username]");
-            console.log(username);
-            var url = "https://api.github.com/users/"+ username.value;
-
-            load.onloadstart = function(){
-                button.innerHTML = "Loading...";
-            }
-
-            /*load.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 200){
-                   hasil.innerHTML = this.responseText;
-                    document.getElementsByClassName("profile").style.display = "flex";
-                }
-            };*/
-            load.onerror = function () {
-                alert("Gagal mengambil data");
-            };
-
-            /*load.onreadystatechange = function(){
-                if(this.readyState == 4 && this.status == 404){
-                    hasil.innerHTML = "Gagal, user tidak ditemukan";
-                    button.innerHTML = "Coba lagi..";
-                    prof.style.display = 'flex';
-                }
-            };*/
-
-            load.onloadend = function(){
-                if(this.responseText !== ""){
-                    var data = JSON.parse(this.responseText);
-                    var img = document.createElement("img");
-                    img.src = data.avatar_url;
-                    
-                    var name = data.login;
-                    var links = data.html_url;
-
-                    var linkLoc = document.getElementById("links");
-                    linkLoc.innerHTML = "";
-
-                    prof.style.display = 'flex';
-                    document.getElementById("username").append(name);
-                    button.innerHTML = "Done";
-                    linkLoc.innerHTML += "<a href='" + links + "'>"+ links + "</a>";
-                    console.log(button.innerHTML);
-                    but();
-                }
-            };
-
-            load.open("GET", url, true);
-            load.send();
-
-            function but(){
-                const button = document.getElementById('button');
-                if(button.innerHTML == "Done"){
-                button.style.display = 'none';
-                button
-                }
-            }
-
-            function clearResult() {
-                document.getElementById("hasil").innerHTML = "";
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </div>
 </body>
 </html>
