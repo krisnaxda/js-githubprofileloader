@@ -61,7 +61,7 @@ document.getElementById('sendIt').addEventListener('submit', function(event) {
 
                     prof.style.display = 'flex';
 
-                    document.getElementById("location").innerHTML += location;
+                    
                     
                     document.getElementById("pubRepo").innerHTML += pubRepo;
                     document.getElementById("createdAt").innerHTML += timeCreated;
@@ -73,6 +73,12 @@ document.getElementById('sendIt').addEventListener('submit', function(event) {
                     }else{
                         document.getElementById("name").innerHTML += name;
                     }
+
+                    // if (location == null){
+                    //     document.getElementById("location").innerHTML = "location is hidden";
+                    // }else{
+                    //     document.getElementById("location").innerHTML += location;
+                    // }
                     
                     button.innerHTML = "Search";
                     linkLoc.innerHTML += "<a href='" + links + "'>"+ links + "</a>";
